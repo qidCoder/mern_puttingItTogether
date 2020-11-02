@@ -14,7 +14,7 @@ class MyComponent extends Component {
     handleClick = (event) => {
         this.setState({
             increment_age: this.state.increment_age + 1,
-
+            clickTimes: [...this.state.clickTimes, new Date()]//this is saying to add a new array and add into it all the existing dates (using the spread operator...) and then after that add in the new date. Not using push or appending because that would be changing the state
         });
     };
 
@@ -30,6 +30,13 @@ class MyComponent extends Component {
                 <button onClick={this.handleClick}>
                     Add 1 year to Age {this.state.increment_age}
                 </button>
+
+                {/* add the render of the date */}
+                <ul>
+                    {this.state.clickTimes.map((date, i) => {
+                        return <li key={i}>{date.toString()}</li>;
+                    })}
+                </ul>
             </div>
         );
     }
