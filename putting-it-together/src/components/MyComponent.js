@@ -1,0 +1,38 @@
+import React, { Component } from 'react';
+
+class MyComponent extends Component {
+    //add in a state variable to create a birthday button that will increase one person's age by one
+    constructor(props){
+        super(props);
+        this.state={
+            increment_age: this.props.age,
+            clickTimes: []//if we want to keep track of the dates when the button is clicked. Empty array at first
+        };
+    }
+
+    //adding in a method to handle the button event to reduce lines of code below
+    handleClick = (event) => {
+        this.setState({
+            increment_age: this.state.increment_age + 1,
+
+        });
+    };
+
+
+    render() {
+        return (
+            <div>
+                <h1>{this.props.lastName}, {this.props.firstName}</h1>
+
+                <p>Age: {this.state.increment_age}</p>
+                <p>Hair Color: {this.props.hairColor}</p>
+
+                <button onClick={this.handleClick}>
+                    Add 1 year to Age {this.state.increment_age}
+                </button>
+            </div>
+        );
+    }
+}
+
+export default MyComponent;
